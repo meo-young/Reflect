@@ -4,5 +4,7 @@ using UnityEngine;
 
 public interface IPlayerState
 {
-    void Handle(PlayerController controller);
+    void OnStateEnter(PlayerController controller);
+    void OnStateUpdate();
+    void OnStateExit();
 }

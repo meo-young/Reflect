@@ -18,13 +18,23 @@ public class PlayerStateContext
 
     public void Transition()
     {
-        CurrentState.Handle(_playerController);
+        CurrentState.OnStateEnter(_playerController);
     }
 
     public void Transition(IPlayerState playerState)
     {
+        if(CurrentState != null)
+            CurrentState.OnStateExit();
         CurrentState = playerState;
-        CurrentState.Handle(_playerController);
+        CurrentState.OnStateEnter(_playerController);
+    }
+
+    public void UpdateState()
+    {
+        if(CurrentState != null)
+        {
+            CurrentState.OnStateUpdate();
+        }
     }
 }
 

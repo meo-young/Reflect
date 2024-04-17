@@ -17,13 +17,35 @@ public class PlayerState : MonoBehaviour
         {
             _playerController.Idle();
             if (Input.GetKey(KeyCode.RightArrow))
-                _playerController.Walking(Direction.Right);
+            {
+                if (Input.GetKey(KeyCode.LeftShift))
+                    _playerController.Running();
+                else
+                    _playerController.Walking(Direction.Right);
+                Debug.Log("hi");
+            }
             if (Input.GetKey(KeyCode.LeftArrow))
-                _playerController.Walking(Direction.Left);
+            {
+                if (Input.GetKey(KeyCode.LeftShift))
+                    _playerController.Running();
+                else
+                    _playerController.Walking(Direction.Left);
+            }
             if (Input.GetKey(KeyCode.UpArrow))
-                _playerController.Walking(Direction.Up);
+            {
+                if (Input.GetKey(KeyCode.LeftShift))
+                    _playerController.Running();
+                else
+                    _playerController.Walking(Direction.Up);
+            }
             if (Input.GetKey(KeyCode.DownArrow))
-                _playerController.Walking(Direction.Down);
+            {
+                if (Input.GetKey(KeyCode.LeftShift))
+                    _playerController.Running();
+                else
+                    _playerController.Walking(Direction.Down);
+            }
+            _playerController._playerStateContext.UpdateState();
         }
         else
         {

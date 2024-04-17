@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float runSpeed = 2.0f;
+    public float runSpeed = 10.0f;
     public float Speed = 1.0f;
     public float CurrentSpeed
     {
@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
 
     private IPlayerState _idleState, _walkState, _runState;
 
-    private PlayerStateContext _playerStateContext;
+    public PlayerStateContext _playerStateContext;
 
     private void Start()
     {
