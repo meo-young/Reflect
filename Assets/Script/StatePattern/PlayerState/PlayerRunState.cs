@@ -20,23 +20,19 @@ public class PlayerRunState : MonoBehaviour, IPlayerState
             {
                 if (_playerController.CurrentDirection == Direction.Right)
                 {
-                    _playerController.transform.Translate(
-                    _playerController.CurrentSpeed * Time.deltaTime, 0, 0);
+                    Running(Direction.Right);
                 }
                 else if (_playerController.CurrentDirection == Direction.Left)
                 {
-                    _playerController.transform.Translate(
-                    _playerController.CurrentSpeed * (-1) * Time.deltaTime, 0, 0);
+                    Running(Direction.Left);
                 }
                 else if (_playerController.CurrentDirection == Direction.Up)
                 {
-                    _playerController.transform.Translate(
-                    0, _playerController.CurrentSpeed * Time.deltaTime, 0);
+                    Running(Direction.Up);
                 }
                 else if (_playerController.CurrentDirection == Direction.Down)
                 {
-                    _playerController.transform.Translate(
-                    0, _playerController.CurrentSpeed * (-1) * Time.deltaTime, 0);
+                    Running(Direction.Down);
                 }
             }
         }
@@ -45,5 +41,35 @@ public class PlayerRunState : MonoBehaviour, IPlayerState
     public void OnStateExit()
     {
 
+    }
+
+    private void Running(Direction _direction)
+    {
+        int _dirX = 0;
+        int _dirY = 0;
+
+        if (_direction == Direction.Right)
+        {
+            _dirX = 1;
+            _dirY = 0;
+        }
+        else if (_direction == Direction.Left)
+        {
+            _dirX = -1;
+            _dirY = 0;
+        }
+        else if (_direction == Direction.Up)
+        {
+            _dirX = 0;
+            _dirY = 1;
+        }
+        else if (_direction == Direction.Down)
+        {
+            _dirX = 0;
+            _dirY = -1;
+        }
+        _playerController.transform.Translate(_playerController.CurrentSpeed * Time.deltaTime * _dirX, _playerController.CurrentSpeed * Time.deltaTime * _dirY, 0);
+        /*anim.SetFloat("DirX", _dirX);
+        anim.SetFloat("DirY", _dirY);*/
     }
 }

@@ -29,20 +29,21 @@ public class PlayerController : MonoBehaviour
         _walkState = gameObject.AddComponent<PlayerWalkState>();
         _runState = gameObject.AddComponent<PlayerRunState>();
 
-        _playerStateContext.Transition(_idleState);
+        _playerStateContext.ChangeState(_idleState);
     }
 
     public void Walking(Direction direction)
     {
         CurrentDirection = direction;
-        _playerStateContext.Transition(_walkState);
+        _playerStateContext.ChangeState(_walkState);
     }
-    public void Running()
+    public void Running(Direction direction)
     {
-        _playerStateContext.Transition(_runState);
+        CurrentDirection = direction;
+        _playerStateContext.ChangeState(_runState);
     }
     public void Idle()
     {
-        _playerStateContext.Transition(_idleState);
+        _playerStateContext.ChangeState(_idleState);
     }
 }

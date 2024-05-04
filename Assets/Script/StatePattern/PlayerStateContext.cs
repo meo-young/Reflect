@@ -16,12 +16,8 @@ public class PlayerStateContext
         _playerController = playerController;
     }
 
-    public void Transition()
-    {
-        CurrentState.OnStateEnter(_playerController);
-    }
 
-    public void Transition(IPlayerState playerState)
+    public void ChangeState(IPlayerState playerState)
     {
         if(CurrentState != null)
             CurrentState.OnStateExit();
