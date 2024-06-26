@@ -20,7 +20,7 @@ public class CameraManager : MonoBehaviour
 
     private Camera theCamera;
 
-    /*private void Awake()
+    private void Awake()
     {
         if (instance == null)
         {
@@ -31,7 +31,7 @@ public class CameraManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-    }*/
+    }
 
     void Start()
     {
@@ -43,6 +43,28 @@ public class CameraManager : MonoBehaviour
     }
 
     void LateUpdate()
+    {
+        if (target != null)
+        {
+            UpdateCurrentBound();
+            UpdateCameraPosition();
+        }
+    }
+
+    private void UpdateCurrentBound()
+    {
+        Collider2D[] colliders = Physics2D.OverlapPointAll(target.transform.position);
+        foreach (var collider in colliders)
+        {
+            if (collider is BoxCollider2D)
+            {
+                SetBound(collider as BoxCollider2D);
+                break;
+            }
+        }
+    }
+
+    private void UpdateCameraPosition()
     {
         if (currentBound != null)
         {
