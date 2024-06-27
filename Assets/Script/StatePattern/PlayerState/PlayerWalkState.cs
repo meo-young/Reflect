@@ -30,22 +30,22 @@ public class PlayerWalkState : MonoBehaviour, IPlayerState
             {
                 if(_playerController.CurrentDirection == Direction.Right)
                 {
-                    if (!IsCollidingWithWall(UnityEngine.Vector2.right))
+                    IsCollidingWithWall(UnityEngine.Vector2.right);
                         Walking(Direction.Right);
                 }
                 else if (_playerController.CurrentDirection == Direction.Left)
                 {
-                    if (!IsCollidingWithWall(UnityEngine.Vector2.left))
+                    IsCollidingWithWall(UnityEngine.Vector2.left);
                         Walking(Direction.Left);
                 }
                 else if (_playerController.CurrentDirection == Direction.Up)
                 {
-                    if (!IsCollidingWithWall(UnityEngine.Vector2.up))
+                    IsCollidingWithWall(UnityEngine.Vector2.up);
                         Walking(Direction.Up);
                 }
                 else if(_playerController.CurrentDirection == Direction.Down)
                 {
-                    if (!IsCollidingWithWall(UnityEngine.Vector2.down))
+                    IsCollidingWithWall(UnityEngine.Vector2.down);
                         Walking(Direction.Down);
                 }
             }
@@ -83,25 +83,25 @@ public class PlayerWalkState : MonoBehaviour, IPlayerState
         }
         
         _playerController.transform.Translate(_playerController.CurrentSpeed * Time.deltaTime * _dirX, _playerController.CurrentSpeed * Time.deltaTime * _dirY, 0);
-        
+
+        _playerController.CurrentSpeed = _playerController.Speed;
         anim.SetFloat("DirX", _dirX);
         anim.SetFloat("DirY", _dirY);
     }
 
-    private bool IsCollidingWithWall(UnityEngine.Vector2 direction)
+    private void IsCollidingWithWall(UnityEngine.Vector2 direction)
     {
-        float distance = 0.1f; // Raycast °Å¸®
+        float distance = 0.1f;
         RaycastHit2D hit = Physics2D.Raycast(_playerController.transform.position, direction, distance, 1 << wallLayer);
 
         if (hit.collider != null)
         {
             anim.SetBool("Walking", false);
-            return true;
+            _playerController.CurrentSpeed = 0.0f;
         }
         else
         {
             anim.SetBool("Walking", true);
-            return false;
         }
     }
 
