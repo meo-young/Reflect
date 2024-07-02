@@ -18,7 +18,7 @@ public class PlayerRunState : MonoBehaviour, IPlayerState
         {
             if(_playerController.CurrentSpeed > 0)
             {
-                if (_playerController.CurrentDirection == Direction.Right)
+                /*if (_playerController.CurrentDirection == Direction.Right)
                 {
                     Running(Direction.Right);
                 }
@@ -33,7 +33,7 @@ public class PlayerRunState : MonoBehaviour, IPlayerState
                 else if (_playerController.CurrentDirection == Direction.Down)
                 {
                     Running(Direction.Down);
-                }
+                }*/
             }
         }
     }

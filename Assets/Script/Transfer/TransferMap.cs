@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TransferMap : MonoBehaviour
 {
+    public Text text;   
+
     public Transform targetLocation; // 이동할 목표 위치
     private bool playerInRange = false; // 플레이어가 포탈 위에 있는지 여부
 
@@ -13,6 +16,14 @@ public class TransferMap : MonoBehaviour
 
     void Start()
     {
+        text = GameObject.Find("Text").GetComponent<Text>();
+        if (text == null)
+        {
+            Debug.LogError("OpenText UI 텍스트를 찾을 수 없습니다.");
+            return;
+        }
+        text.enabled = false;
+
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
         {
@@ -54,12 +65,31 @@ public class TransferMap : MonoBehaviour
             }
         }
     }
+    
+    private void ShowText()
+    {
+        text.enabled = true;
+        text.transform.position = transform.position + new Vector3(0, 1, 0);
+        if (CompareTag("OpenDoor"))
+        {
+            text.text = "열기";
+        }
+        else if (CompareTag("CloseDoor"))
+        {
+            text.text = "닫기";
+        }
+    }
+
+    private void HideText()
+    {
+        text.enabled = false;
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("InPortal");
+            ShowText();
             playerInRange = true;
         }
     }
@@ -68,6 +98,7 @@ public class TransferMap : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            HideText();
             playerInRange = false;
         }
     }

@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
         get; set;
     }
 
-    public Direction CurrentDirection
+    public Vector2 CurrentDirection
     {
         get; private set;
     }
@@ -32,14 +32,14 @@ public class PlayerController : MonoBehaviour
         _playerStateContext.ChangeState(_idleState);
     }
 
-    public void Walking(Direction direction)
+    public void Walking(Vector2 movement)
     {
-        CurrentDirection = direction;
+        CurrentDirection = movement;
         _playerStateContext.ChangeState(_walkState);
     }
-    public void Running(Direction direction)
+    public void Running(Vector2 movement)
     {
-        CurrentDirection = direction;
+        CurrentDirection = movement;
         _playerStateContext.ChangeState(_runState);
     }
     public void Idle()

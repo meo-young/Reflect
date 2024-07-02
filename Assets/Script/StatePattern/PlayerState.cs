@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerState : MonoBehaviour
 {
     private PlayerController _playerController;
+    private Vector2 movement;
     void Start()
     {
         _playerController = FindObjectOfType<PlayerController>();
@@ -15,7 +16,7 @@ public class PlayerState : MonoBehaviour
     {
         if(_playerController != null)
         {
-            _playerController.Idle();
+            /*_playerController.Idle();
             if (Input.GetKey(KeyCode.RightArrow))
             {
                 if (Input.GetKey(KeyCode.LeftShift))
@@ -43,7 +44,19 @@ public class PlayerState : MonoBehaviour
                     _playerController.Running(Direction.Down);
                 else
                     _playerController.Walking(Direction.Down);
+            }*/
+
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.y = Input.GetAxisRaw("Vertical");
+            if(movement.x != 0 || movement.y != 0)
+            {
+                _playerController.Walking(movement);
             }
+            else
+            {
+                _playerController.Idle();
+            }
+
             _playerController._playerStateContext.UpdateState();
         }
         else
