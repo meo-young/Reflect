@@ -26,7 +26,6 @@ public class PlayerWalkState : MonoBehaviour, IPlayerState
         {
             if(_playerController.CurrentSpeed > 0)
             {
-
                 Walking(_playerController.CurrentDirection);
             }
         }

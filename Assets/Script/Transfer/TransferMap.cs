@@ -16,7 +16,7 @@ public class TransferMap : MonoBehaviour
 
     void Start()
     {
-        text = GameObject.Find("Text").GetComponent<Text>();
+        text = GameObject.Find("Tag").GetComponent<Text>();
         if (text == null)
         {
             Debug.LogError("OpenText UI 텍스트를 찾을 수 없습니다.");

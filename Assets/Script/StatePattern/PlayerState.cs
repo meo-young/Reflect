@@ -16,38 +16,16 @@ public class PlayerState : MonoBehaviour
     {
         if(_playerController != null)
         {
-            /*_playerController.Idle();
-            if (Input.GetKey(KeyCode.RightArrow))
+            if(movement.x == 0)
             {
-                if (Input.GetKey(KeyCode.LeftShift))
-                    _playerController.Running(Direction.Right);
-                else
-                    _playerController.Walking(Direction.Right);
+                movement.y = Input.GetAxisRaw("Vertical");
             }
-            if (Input.GetKey(KeyCode.LeftArrow))
+            if(movement.y == 0)
             {
-                if (Input.GetKey(KeyCode.LeftShift))
-                    _playerController.Running(Direction.Left);
-                else
-                    _playerController.Walking(Direction.Left);
-            }
-            if (Input.GetKey(KeyCode.UpArrow))
-            {
-                if (Input.GetKey(KeyCode.LeftShift))
-                    _playerController.Running(Direction.Up);
-                else
-                    _playerController.Walking(Direction.Up);
-            }
-            if (Input.GetKey(KeyCode.DownArrow))
-            {
-                if (Input.GetKey(KeyCode.LeftShift))
-                    _playerController.Running(Direction.Down);
-                else
-                    _playerController.Walking(Direction.Down);
-            }*/
+                movement.x = Input.GetAxisRaw("Horizontal");
 
-            movement.x = Input.GetAxisRaw("Horizontal");
-            movement.y = Input.GetAxisRaw("Vertical");
+            }
+           
             if(movement.x != 0 || movement.y != 0)
             {
                 _playerController.Walking(movement);
