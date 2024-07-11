@@ -23,7 +23,6 @@ public class PlayerState : MonoBehaviour
             if(movement.y == 0)
             {
                 movement.x = Input.GetAxisRaw("Horizontal");
-
             }
            
             if(movement.x != 0 || movement.y != 0)
