@@ -21,7 +21,7 @@ public class PlayerWalkState : MonoBehaviour, IPlayerState
     {
         if (_playerController)
         {
-            Debug.Log("Player Walk");
+            //Debug.Log("Player Walk");
             if (movement.x == 0)
             {
                 movement.y = Input.GetAxisRaw("Vertical");
